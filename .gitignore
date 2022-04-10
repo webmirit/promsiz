@@ -14,6 +14,7 @@ web.config
 /*.zip
 /*.tar
 bitrix/modules/updater.log
+node_modules
 upload
 .buildpath
 .project
@@ -32,3 +33,4 @@ log.txt
 /*.png
 sef/
 cache/*
+local/templates/aspro_next/build
