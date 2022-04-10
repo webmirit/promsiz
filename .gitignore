@@ -34,3 +34,4 @@ log.txt
 sef/
 cache/*
 local/templates/aspro_next/build
+/vendor/
