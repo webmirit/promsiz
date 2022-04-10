@@ -1,4 +1,7 @@
 <?php
+
+use App\Service\Configurator;
+
 require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/header.php");
 $APPLICATION->SetTitle("Конфигуратор");
 
