@@ -1,0 +1,15 @@
+{
+    "name": "bitrix/php_interface",
+    "authors": [
+        {
+            "name": "x5",
+            "email": "sergheysmetnain@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "XFive\\": "lib/XFive"
+        }
+    }
+}

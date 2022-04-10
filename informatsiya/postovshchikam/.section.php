@@ -1,0 +1,6 @@
+<?
+$sSectionName = "Постовщикам";
+$arDirProperties = Array(
+
+);
+?>

@@ -1,0 +1,6 @@
+<?
+$sSectionName = "Сеты";
+$arDirProperties = Array(
+
+);
+?>

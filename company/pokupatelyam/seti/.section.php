@@ -1,0 +1,6 @@
+<?
+$sSectionName = "Сети";
+$arDirProperties = Array(
+
+);
+?>

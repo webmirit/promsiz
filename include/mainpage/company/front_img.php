@@ -1,0 +1,1 @@
+<img width="300" alt="Лого верт1.jpg" src="/images/promsiz-logo-square.png" height="300" title="Лого верт1.jpg">

@@ -1,0 +1,6 @@
+<?
+$sSectionName = "Стеклоизделий";
+$arDirProperties = Array(
+
+);
+?>

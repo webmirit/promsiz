@@ -1,0 +1,55 @@
+Options -Indexes
+ErrorDocument 404 /404.php
+	php_value mbstring.func_overload 2
+	php_value mbstring.internal_encoding UTF-8
+    php_value pcre.recursion_limit 100000
+    php_value max_execution_time 240
+    php_value max_input_vars 10000
+
+<IfModule mod_php5.c>
+	php_flag allow_call_time_pass_reference 1
+	php_flag session.use_trans_sid off
+
+
+	#php_value display_errors 1
+
+	#php_value mbstring.internal_encoding UTF-8
+</IfModule>
+
+<IfModule mod_rewrite.c>
+	Options +FollowSymLinks
+	RewriteEngine On
+	RewriteBase /
+
+	RewriteCond %{REQUEST_URI} ^(.+)\.(jpe?g|png)\.webp$ [NC]
+	RewriteRule ^(.+)\.(jpe?g|png)\.webp$ /webp_convert.php?file=$1.$2 [L]
+
+	RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+	RewriteRule ^(.*)$ https://ghsz.ru%{REQUEST_URI} [R=301,QSA,NC,L]
+
+	RewriteCond %{HTTPS} off
+	RewriteCond %{HTTP:X-Forwarded-Proto} !https
+	RewriteRule ^(.*)$ https://%{SERVER_NAME}%{REQUEST_URI} [L,R=301]
+
+	#RewriteCond %{HTTPS} =off
+	#RewriteRule (.*) https://%{SERVER_NAME}%{REQUEST_URI} [QSA,L]
+
+
+	RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteCond %{REQUEST_FILENAME} !-l
+	RewriteCond %{REQUEST_FILENAME} !-d
+	RewriteCond %{REQUEST_FILENAME} !/bitrix/urlrewrite.php$
+	RewriteRule ^(.*)$ /bitrix/urlrewrite.php [L]
+	RewriteRule .* - [E=REMOTE_USER:%{HTTP:Authorization}]
+</IfModule>
+
+<IfModule mod_dir.c>
+	DirectoryIndex index.php index.html
+</IfModule>
+
+<IfModule mod_expires.c>
+	ExpiresActive on
+	ExpiresByType image/jpeg "access plus 30 day"
+	ExpiresByType image/gif "access plus 30 day"
+	ExpiresByType image/webp "access plus 30 day"
+</IfModule>

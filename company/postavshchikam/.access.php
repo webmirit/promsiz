@@ -1,0 +1,10 @@
+<?
+$PERM["transportno-logisticheskikh-uslug-"]["*"]="X";
+$PERM["transportno-logisticheskikh-uslug-"]["G6"]="X";
+$PERM["zapchastey-dlya-oborudovaniya-i-mbp"]["*"]="X";
+$PERM["zapchastey-dlya-oborudovaniya-i-mbp"]["G6"]="X";
+$PERM["stekloizdeliy"]["*"]="X";
+$PERM["stekloizdeliy"]["G6"]="X";
+$PERM["upakovki"]["*"]="X";
+$PERM["upakovki"]["G6"]="X";
+?>

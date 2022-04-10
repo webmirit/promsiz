@@ -1,0 +1,16 @@
+<?
+$PERM["razrabotka-novogo-uzora"]["*"]="X";
+$PERM["razrabotka-novogo-uzora"]["G6"]="X";
+$PERM["planirovanie-proizvodstva"]["*"]="X";
+$PERM["planirovanie-proizvodstva"]["G6"]="X";
+$PERM["reklamnye-agentstva-korporativnaya-simvolika"]["*"]="X";
+$PERM["reklamnye-agentstva-korporativnaya-simvolika"]["G6"]="X";
+$PERM["internet-torgovlya"]["*"]="X";
+$PERM["internet-torgovlya"]["G6"]="X";
+$PERM["regionalnye-distribyutory"]["*"]="X";
+$PERM["regionalnye-distribyutory"]["G6"]="X";
+$PERM["eksport"]["*"]="X";
+$PERM["eksport"]["G6"]="X";
+$PERM["seti"]["*"]="X";
+$PERM["seti"]["G6"]="X";
+?>
