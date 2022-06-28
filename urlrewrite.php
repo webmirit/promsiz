@@ -24,6 +24,14 @@ $arUrlRewrite=array (
     'PATH' => '/bitrix/services/ymarket/index.php',
     'SORT' => 100,
   ),
+  11 => 
+  array (
+    'CONDITION' => '#^/api/configurator/#',
+    'RULE' => '',
+    'ID' => NULL,
+    'PATH' => '/ajax/configurator.php',
+    'SORT' => 100,
+  ),
   10 => 
   array (
     'CONDITION' => '#^/company/vacancy/#',
@@ -112,7 +120,7 @@ $arUrlRewrite=array (
     'PATH' => '/informatsiya/faq/index.php',
     'SORT' => 100,
   ),
-  27 => 
+  29 => 
   array (
     'CONDITION' => '#^/catalog/#',
     'RULE' => '',

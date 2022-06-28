@@ -1,4 +1,7 @@
-import Vue from 'vue'
+import Vue from 'vue';
+import ApiClient from "./service/ApiClient";
+import VueMask from 'v-mask'
+Vue.use(VueMask);
 
 Vue.config.productionTip = false;
 
@@ -13,6 +16,10 @@ files.keys().map(key =>
   )
 );
 
+const apiClient = new ApiClient();
+
 window.onload = () => {
-  new Vue({}).$mount('#app-configurator');
+  new Vue({
+    provide: {apiClient},
+  }).$mount('#app-configurator');
 }

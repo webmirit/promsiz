@@ -1,0 +1,47 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: true
+
+  #repositories
+  App\Repository\Configurator\CatalogRepository:
+    arguments:
+      $ibCode: 'aspro_next_catalog'
+
+  App\Repository\Configurator\TechRepository:
+    arguments:
+      $ibCode: 'tech'
+
+  App\Repository\Configurator\FormRepository:
+    arguments:
+      $ibCode: 'form'
+
+  App\Repository\Configurator\PackRepository:
+    arguments:
+      $ibCode: 'pack'
+
+  App\Repository\Configurator\LetterRepository:
+    arguments:
+      $ibCode: 'letter'
+
+  #controllers
+  App\Controller\:
+    resource: '../../src/Controller/'
+    tags: [ 'controller.service_arguments' ]
+
+  App\Service\:
+    resource: '../../src/Service/'
+
+  App\Service\TemplateService:
+    arguments:
+      $basePath: '%kernel.project_dir%/local/views/'
+
+  App\EventSubscriber\:
+    resource: '../../src/EventSubscriber/'
+    tags:
+      - { name: kernel.event_subscriber,  priority: 60 }
+
+  App\ValueResolver\ValidatedRequest:
+    tags:
+      - { name: controller.argument_value_resolver, priority: 50 }

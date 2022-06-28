@@ -4,8 +4,8 @@ $APPLICATION->SetPageProperty("keywords", "ГХСЗ Гусь-Хрустальн�
 $APPLICATION->SetPageProperty("title", "ГХСЗ Гусь-Хрустальный Стекольный Завод (ООО ПромСИЗ): каталог продукции из стекла");
 $APPLICATION->SetTitle("Каталог");
 $APPLICATION->IncludeComponent(
-	"bitrix:catalog", 
-	"main", 
+	"bitrix:catalog",
+	"main",
 	array(
 		"IBLOCK_TYPE" => "aspro_next_catalog",
 		"IBLOCK_ID" => "17",
@@ -18,7 +18,7 @@ $APPLICATION->IncludeComponent(
 		"PRODUCT_PROPS_VARIABLE" => "prop",
 		"SEF_MODE" => "Y",
 		"SEF_FOLDER" => "/catalog/",
-		"AJAX_MODE" => "N",
+		"AJAX_MODE" => "Y",
 		"AJAX_OPTION_JUMP" => "N",
 		"AJAX_OPTION_STYLE" => "Y",
 		"AJAX_OPTION_HISTORY" => "Y",
@@ -351,7 +351,7 @@ $APPLICATION->IncludeComponent(
 		"SKU_DETAIL_ID" => "oid",
 		"USE_MAIN_ELEMENT_SECTION" => "Y",
 		"SET_LAST_MODIFIED" => "N",
-		"PAGER_BASE_LINK_ENABLE" => "N",
+		"PAGER_BASE_LINK_ENABLE" => "Y",
 		"SHOW_404" => "Y",
 		"MESSAGE_404" => "",
 		"AJAX_FILTER_CATALOG" => "N",
@@ -527,6 +527,8 @@ $APPLICATION->IncludeComponent(
 		"STORES_FILTER_ORDER" => "SORT_ASC",
 		"FILE_404" => "",
 		"CACHE_NOTES" => "",
+		"PAGER_BASE_LINK" => "",
+		"PAGER_PARAMS_NAME" => "arrPager",
 		"SEF_URL_TEMPLATES" => array(
 			"sections" => "",
 			"section" => "#SECTION_CODE_PATH#/",
