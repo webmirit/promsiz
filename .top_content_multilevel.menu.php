@@ -42,13 +42,13 @@ $aMenuLinks = Array(
 		Array(),
 		""
 	),
-	Array(
+	/*Array(
 		"Конфигуратор",
 		"/configurator/",
 		Array(),
 		Array(),
 		""
-	),
+	),*/
 	Array(
 		"",
 		"",
