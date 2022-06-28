@@ -1,46 +1,60 @@
 <?
 $aMenuLinks = Array(
 	Array(
-		"Каталог", 
-		"/catalog/", 
-		Array(), 
-		Array("NOT_VISIBLE"=>"Y", "CLASS"=>"catalog wide_menu"), 
-		"" 
+		"Каталог",
+		"/catalog/",
+		Array(),
+		Array("NOT_VISIBLE"=>"Y", "CLASS"=>"catalog wide_menu"),
+		""
 	),
 	Array(
-		"Компания", 
-		"/company/", 
-		Array(), 
-		Array(), 
-		"" 
+		"Компания",
+		"/company/",
+		Array(),
+		Array(),
+		""
 	),
 	Array(
-		"О продукте", 
-		"/informatsiya/", 
-		Array(), 
-		Array(), 
-		"" 
+		"О продукте",
+		"/informatsiya/",
+		Array(),
+		Array(),
+		""
 	),
 	Array(
-		"Новости", 
-		"/company/news/", 
-		Array(), 
-		Array(), 
-		"" 
+		"Новости",
+		"/company/news/",
+		Array(),
+		Array(),
+		""
 	),
 	Array(
-		"Блог", 
-		"/blog/", 
-		Array(), 
-		Array(), 
-		"" 
+		"Блог",
+		"/blog/",
+		Array(),
+		Array(),
+		""
 	),
 	Array(
-		"Контакты", 
-		"/contacts/", 
-		Array(), 
-		Array(), 
-		"" 
+		"Контакты",
+		"/contacts/",
+		Array(),
+		Array(),
+		""
+	),
+	Array(
+		"Конфигуратор",
+		"/configurator/",
+		Array(),
+		Array(),
+		""
+	),
+	Array(
+		"",
+		"",
+		Array(),
+		Array(),
+		""
 	)
 );
 ?>

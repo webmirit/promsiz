@@ -1,12 +1,13 @@
 <template>
-  <div>
-    <div class="start-title">
+  <div class="conf-content">
+    <div class="conf-title">
       С чего начнем?
     </div>
 
-    <div class="start-list">
+    <div class="slide-start">
 
-      <div class="start-item" v-for="(item, i) in items" :key="i" :class="{active : i === activeIndex}" @click="itemCheck(i)">
+      <div class="start-item" v-for="(item, i) in items" :key="i" :class="{active : i === activeIndex}"
+           @click="itemCheck(i)">
         <img :src="item.image" :alt="item.title">
         <span>{{ item.title }}</span>
       </div>
@@ -20,23 +21,98 @@ export default {
   name: "StartMenu",
   data: () => ({
     items: [
-      {image: require('../assets/start/start-tech.png'), title: 'Технология'},
-      {image: require('../assets/start/start-form.png'), title: 'Вид формы'},
-      {image: require('./../assets/start/start-pack.png'), title: 'Упаковка'}
+      {image: require('../assets/start/start-tech.jpg'), title: 'Технология', name: 'Technology', id: 0},
+      {image: require('../assets/start/start-form.jpg'), title: 'Вид формы', name: 'FormType', id: 1},
+      {image: require('./../assets/start/start-pack.jpg'), title: 'Упаковка', name: 'Package', id: 2}
     ],
-    onCheck: false,
-    activeIndex: ''
+    activeIndex: '',
+    techList: {
+      components: [
+        'StartMenu',
+        'TechList',
+        'TypeForm',
+        'FormList',
+        'PatternList',
+        'PackingList',
+        'OrderForm'
+      ],
+      name: [
+        'Начало',
+        'Технология',
+        'Тип формы',
+        'Форма',
+        'Узор',
+        'Упаковка',
+      ]
+    },
+    formList: {
+      components: [
+        'StartMenu',
+        'TypeForm',
+        'FormList',
+        'TechList',
+        'PatternList',
+        'PackingList',
+        'OrderForm'
+      ],
+      name: [
+        'Начало',
+        'Тип формы',
+        'Форма',
+        'Технология',
+        'Узор',
+        'Упаковка',
+      ]
+    },
+    packingList: {
+      components: [
+        'StartMenu',
+        'PackingList',
+        'TypeForm',
+        'FormList',
+        'TechList',
+        'PatternList',
+        'OrderForm'
+      ],
+      name: [
+        'Начало',
+        'Упаковка',
+        'Тип формы',
+        'Форма',
+        'Технология',
+        'Узор'
+      ]
+    },
+    allInfo: {
+      onCheck: false,
+      selectComponentList: [],
+      topMenu: [],
+    },
   }),
   methods: {
     itemCheck(indexItem) {
+      //Проверяем, выбран ли элемент и активируем кнопку Вперед
       if (this.activeIndex === indexItem) {
         this.activeIndex = '';
-        this.onCheck = false;
+        this.allInfo.onCheck = false;
       } else {
         this.activeIndex = indexItem;
-        this.onCheck = true;
+        this.allInfo.onCheck = true;
       }
-      this.$emit('checkActiveItem', this.onCheck);
+      //Проверяем, какая начальная точка и в зависимости от этого, передаем список компонентов в переменную
+      switch (this.items[indexItem].name) {
+        case 'Technology':
+          this.allInfo.selectComponentList = this.techList;
+          break
+        case 'FormType':
+          this.allInfo.selectComponentList = this.formList;
+          break
+        case 'Package':
+          this.allInfo.selectComponentList = this.packingList;
+          break
+      }
+      //Передаем наверх состояние кнопки и список компонентов
+      this.$emit('getAllInfo', this.allInfo);
     }
   }
 }
@@ -45,45 +121,49 @@ export default {
 
 <style scoped>
 
-.start-title {
-  text-align: center;
-  font-size: 36px;
-  margin-bottom: 50px;
-}
-
-.start-list {
+.slide-start {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
 }
 
 .start-item {
   display: flex;
+  position: relative;
   flex-direction: column;
-  text-align: center;
-  padding: 24px;
+  justify-content: center;
+  align-items: center;
+  width: 250px;
+  height: 250px;
   border: 2px solid #fff0;
-  border-radius: 20px;
-  transition: 400ms;
+  box-sizing: border-box;
+  border-radius: 6px;
   cursor: pointer;
 }
 
-/*.start-item:hover {
-  border: 2px solid #172B77;
-  transition: 400ms;
-}*/
+.start-item:hover {
+  border: 2px solid #D9D9D9;
+}
 
 .start-item.active {
-  border: 2px solid #172B77;
-  transition: 400ms;
+  border: 2px solid #D9D9D9;
 }
 
 .start-item img {
   max-width: 200px;
+  max-height: 150px;
 }
 
 .start-item span {
-  font-size: 22px;
-  padding: 10px;
+  position: absolute;
+  bottom: 5px;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 25px;
+  text-align: center;
 }
 
 </style>
