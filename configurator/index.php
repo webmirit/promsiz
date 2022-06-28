@@ -1,5 +1,7 @@
 <?php
 
+define('NEED_AUTH', true);
+
 use App\Repository\Configurator\{
     PackRepository,
     CatalogRepository,
