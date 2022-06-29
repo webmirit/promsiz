@@ -1,6 +1,5 @@
 <template>
   <div class="conf-content" v-if="loadStatus || step === 1">
-    gg
     <div class="conf-title">
       Выберите тип упаковки
     </div>
