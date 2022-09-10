@@ -70,6 +70,16 @@ export default class ApiClient {
     );
   }
 
+  sendOrderInfo(data) {
+    return this.client(
+      '/configurator/order/handle/',
+      {
+        method: 'post',
+        data,
+      }
+    );
+  }
+
   /**
    *
    * @param url

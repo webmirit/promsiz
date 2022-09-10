@@ -23,19 +23,19 @@ class Order implements IValidatable
         $metadata->addPropertyConstraint('phone', $notBlank);
 
 
-        $metadata->addPropertyConstraint(
-            'basket',
-            new Assert\All(
-                new Assert\Collection([
-                    'id' => new Assert\Required([
-                        new Assert\NotBlank()
-                    ]),
-                    'quantity' => new Assert\Required([
-                        new Assert\NotBlank()
-                    ]),
-                ])
-            )
-        );
+//        $metadata->addPropertyConstraint(
+//            'basket',
+//            new Assert\All(
+//                new Assert\Collection([
+//                    'id' => new Assert\Required([
+//                        new Assert\NotBlank()
+//                    ]),
+//                    'quantity' => new Assert\Required([
+//                        new Assert\NotBlank()
+//                    ]),
+//                ])
+//            )
+//        );
     }
 
     /**

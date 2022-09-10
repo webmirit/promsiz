@@ -1,12 +1,12 @@
 <template>
   <div class="conf-content">
-    <div class="conf-title basket">
+    <div class="conf-title basket" v-if="!orderAccepted">
       Конфигурация заказа:
     </div>
-    <div class="conf-add-item" @click="startOver">
+    <div class="conf-add-item" @click="startOver" v-if="!orderAccepted">
       <span>+</span>Добавить ещё
     </div>
-    <div v-if="cart.length > 0" class="conf-basket">
+    <div v-if="cart.length > 0 && !orderAccepted" class="conf-basket">
       <div class="basket-table">
         <table class="basket-list">
           <tr class="table-header">
@@ -51,22 +51,26 @@
           <li><span>Объем:</span> {{ orderVolume }} м3</li>
           <li><span>Вес:</span> {{ orderWeight }} кг</li>
           <li><span>Кол-во коробов:</span> {{ calcBox }}</li>
-          <li><span>Кол-во паллет:</span> 2</li>
+          <!--<li><span>Кол-во паллет:</span> 2</li>-->
         </ul>
         <hr>
         <div class="basket-form_title">Ваши контакты</div>
-        <form class="basket-form_feedback">
+        <div class="basket-form_feedback">
           <span>Имя:</span>
-          <input type="text" v-model="orderInfo.userName">
+          <input type="text" v-model="orderInfo.name" :class = "{active : !validate}">
           <span>Телефон:</span>
-          <input type="text" v-mask="'+7 (###)###-####'" v-model="orderInfo.userPhone" placeholder="+7 (___) ___-____">
+          <input type="text" v-model="orderInfo.phone" placeholder="" :class = "{active : !validate}">
           <button class="conf-btn" @click="sendOrder">Отправить</button>
-        </form>
+        </div>
       </div>
       <div class="basket-list-clear" @click="clearCart()">
         <img :src="require('../assets/trash.png')" alt="Очистить корзину">
         <span>Очистить корзину</span>
       </div>
+    </div>
+    <div v-else-if="orderAccepted" class="orderSend">
+      <span >Ваша заявка отправлена!</span>
+      <span >Наш менеджер свяжется с Вами в ближайшее время!</span>
     </div>
     <div v-else class="conf-basket">
         <h2 class="basket-clear">Корзина пуста</h2>
@@ -82,10 +86,14 @@ export default {
     allVolume: 0,
     allPack: 0,
     orderInfo: {
-      userName: '',
-      userPhone: '',
-    }
+      name: '',
+      phone: '',
+      basket: Array,
+    },
+    validate: true,
+    orderAccepted: false,
   }),
+  inject: ['apiClient'],
   props: {
     cart: {
       type: Array,
@@ -110,8 +118,20 @@ export default {
       this.$emit('clearCart', true);
     },
     sendOrder() {
-      this.$emit('getOrderInfo', this.orderInfo);
-    }
+      if (this.orderInfo.name.length > 0 && this.orderInfo.phone.length > 0) {
+        this.validate = true;
+        this.orderInfo.basket = this.cart;
+        this.clearCart();
+        this.orderAccepted = true;
+        this.sendOrderOnBase(this.orderInfo);
+      } else {
+        this.validate = false;
+      }
+    },
+    async sendOrderOnBase(data){
+      let response = await this.apiClient.sendOrderInfo(data);
+      return response;
+    },
   },
   computed: {
     orderVolume() {
@@ -262,7 +282,8 @@ h2.basket-clear {
 .basket-list-item td {
   border: 1.5px solid #D9D9D9;
   border-top: 0px;
-  padding-left: 10px;
+  padding-left: 5px;
+  padding-right: 5px;
   box-sizing: border-box;
 }
 
@@ -276,6 +297,9 @@ h2.basket-clear {
 
 .basket-list-item td img {
   max-width: 100px;
+  max-height: 100px;
+  display: block;
+  margin: 0 auto;
 }
 
 .basket-item_info {
@@ -327,6 +351,10 @@ h2.basket-clear {
   background: #fff !important;
   border: 1px solid #D9D9D9 !important;
   padding: 4px 10px 4px !important;
+}
+
+.basket-form_feedback input.active {
+  border-color: var(--color-seven)!important;
 }
 
 .basket-list-item_quantity {
@@ -391,7 +419,7 @@ h2.basket-clear {
 .basket-list-clear {
   position: absolute;
   bottom: 25px;
-  left: 90px;
+  left: 60px;
   cursor: pointer;
   color: #252525;
   transition: 300ms;
@@ -405,5 +433,20 @@ h2.basket-clear {
 .basket-list-clear:hover span {
   color: var(--color-seven);
   transition: 300ms;
+}
+
+.orderSend {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.orderSend span {
+  font-size: 20px;
+}
+.orderSend span:first-child {
+  font-weight: 600;
 }
 </style>

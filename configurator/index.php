@@ -25,6 +25,7 @@ $catalogRepository = container()->get(CatalogRepository::class);
 $formRepository = container()->get(FormRepository::class);
 $techRepository = container()->get(TechRepository::class);
 $packRepository = container()->get(PackRepository::class);
+//dd($packRepository->findAllPacks());
 ?>
     <div id="app-configurator">
         <g-configurator

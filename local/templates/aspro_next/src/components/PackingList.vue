@@ -14,9 +14,9 @@
                 :class="{ active : item.id === activePackType }">
               {{ item.name }}
             </li>
-            <li v-if="checkSets" @click="clickOnSets()" :class="{ active : activeSets }">
-              Сеты
-            </li>
+<!--            <li v-if="checkSets" @click="clickOnSets()" :class="{ active : activeSets }">-->
+<!--              Сеты-->
+<!--            </li>-->
           </ul>
         </div>
         <div class="pac-quantity">
@@ -145,6 +145,20 @@ export default {
       },
     ],
     defaultSetsList: [3, 6, 7, 12, 18],
+    defaultPackPic: [
+      {
+        id: 201,
+        picture: require('../assets/startpack/openpack.jpg'),
+      },
+      {
+        id: 202,
+        picture: require('../assets/startpack/closepack.jpg'),
+      },
+      {
+        id: 203,
+        picture: require('../assets/startpack/gofrapack.jpg'),
+      },
+    ],
     activeSetsNum: 0,
   }),
   props: {
@@ -229,16 +243,15 @@ export default {
   computed: {
     getPackNumber() {
       if (this.allSelected.formId.length !== 0) {
-        return this.packList.filter(item => item.type === this.activePackType && item.form === this.allSelected.formId);
+        return this.packList.filter(item => item.type === this.activePackType && item.form === this.allSelected.formId).sort((a, b) => a.count > b.count ? 1 : -1);
       }
 
       return this.packList.filter(item => item.type === this.activePackType).reduce((res, item) => {
         if (!res.find(({count}) => item.count === count)) {
           res.push(item);
         }
-
         return res;
-      }, []).sort(({count: a}, {count: b}) => a > b ? 1 : -1);
+      }, []).sort((a, b) => a.count > b.count ? 1 : -1);
     },
     sortPackTypeList() {
       if (this.allSelected.formId.length !== 0) {
@@ -254,7 +267,10 @@ export default {
       if (undefined === this.getPackNumber[this.activeNum]) {
         return;
       }
-
+      if (this.step === 1) {
+        const sortPackType = this.defaultPackPic.filter((item) => item.id === this.activePackType);
+        return sortPackType[0].picture;
+      }
       return this.getPackNumber[this.activeNum].picture;
     },
     getSetsNumber() {
@@ -271,9 +287,8 @@ export default {
     getPackSetsImage() {
       if (this.getSetsNumber[this.activeNumSets] === undefined) {
         return;
-      } else {
-        return this.getSetsNumber[this.activeNumSets].photoWithForm;
       }
+      return this.getSetsNumber[this.activeNumSets].photoWithForm;
     },
     checkSets() {
       if (this.step === 1) {
