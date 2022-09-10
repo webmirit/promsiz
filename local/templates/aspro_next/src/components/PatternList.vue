@@ -12,8 +12,8 @@
       />
       <div class="slide-card">
         <div class="slide-card-image">
-          <img v-if="patternsList.data[activeForm].previewPicture !== true"
-               :src="patternsList.data[activeForm].previewPicture" :alt="patternsList.data[activeForm].name">
+          <img v-if="patternsList.data[activeForm].detailPicture !== true"
+               :src="patternsList.data[activeForm].detailPicture" :alt="patternsList.data[activeForm].name">
           <img v-else src="./../assets/no-image.png" alt="No image">
         </div>
         <div class="slide-card-name">

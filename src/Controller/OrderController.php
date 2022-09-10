@@ -45,7 +45,6 @@ class OrderController extends AbstractController
         $template = $this->templateService->render('order/new.php', $request->toArray());
         $this->letterRepository->addLetter($template);
         $this->eventDispatcher->dispatch((new NewOrder(compact('template')))->mail(), NewOrder::class);
-
         return new JsonResponse(['success' => true]);
     }
 }

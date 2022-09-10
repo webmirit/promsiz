@@ -186,6 +186,7 @@ export default {
 
 .slide-item img {
   max-width: 120px;
+  max-height: 120px;
 }
 
 .slide-item span {

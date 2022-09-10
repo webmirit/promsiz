@@ -72,7 +72,7 @@ export default {
   flex-direction: column;
   list-style-type: none;
   margin-right: 85px;
-  cursor: pointer;
+  /*cursor: pointer;*/
 }
 .conf-nav ul li:last-child {
   margin-right: 0;
